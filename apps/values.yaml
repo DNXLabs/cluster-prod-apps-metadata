@@ -6,7 +6,7 @@ argocd:
   appNameSuffix: ''
 source:
   repoURL: https://github.com/DNXLabs/cluster-prod-apps-metadata.git
-  targetRevision: main
+  targetRevision: master
 destination:
   cluster: https://kubernetes.default.svc
 syncPolicy: {prune: true, selfHeal: true} # auto-sync enabled
