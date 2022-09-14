@@ -23,6 +23,7 @@ apps:
       ingress.enabled: "true"
       ingress.annotations.kubernetes\.io\/ingress\.class: alb
       ingress.annotations.alb\.ingress\.kubernetes\.io\/group\.name: prod-apps
+      ingress.annotations.alb\.ingress\.kubernetes\.io\/scheme: internet-facing
       ingress.annotations.alb\.ingress\.kubernetes\.io\/certificate-arn: "arn:aws:acm:ap-southeast-2:960722883904:certificate/50e2b8cb-b10c-42ee-9a30-a282c4efba63"
       ingress.annotations.alb\.ingress\.kubernetes\.io\/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
       ingress.annotations.alb\.ingress\.kubernetes\.io\/ssl-redirect: '443'
