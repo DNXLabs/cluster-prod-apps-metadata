@@ -5,7 +5,7 @@ argocd:
   project: default
   appNameSuffix: ''
 source:
-  repoURL: git@github.com:DNXLabs/cluster-prod-apps-metadata.git
+  repoURL: https://github.com/DNXLabs/cluster-prod-apps-metadata.git
   targetRevision: main
 destination:
   cluster: https://kubernetes.default.svc
