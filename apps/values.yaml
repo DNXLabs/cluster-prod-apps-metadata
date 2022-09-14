@@ -13,8 +13,7 @@ syncPolicy: {prune: true, selfHeal: true} # auto-sync enabled
 
 apps:
   poc-application-blueprint:
-
-    project: poc-application-blueprint
+    project: default
     namespace: prod
     path: charts/poc-application-blueprint
     helm_parameters:
