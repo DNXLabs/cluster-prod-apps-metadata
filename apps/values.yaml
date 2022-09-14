@@ -31,6 +31,6 @@ apps:
       ingress.annotations.alb\.ingress\.kubernetes\.io\/success-codes: "200"
       ingress.annotations.alb\.ingress\.kubernetes\.io\/healthcheck-path: /
       ingress.annotations.alb\.ingress\.kubernetes\.io\/group\.order: "100"
-      # ingress.hosts[0].host: blueprint.dnx.solution
-      # ingress.hosts[0].paths[0]: "/"
+      ingress.hosts[0].host: blueprint.citadel-prod.bubbletea.dnx.one
+      ingress.hosts[0].paths[0]: "/"
       revisionHistoryLimit: "2"
