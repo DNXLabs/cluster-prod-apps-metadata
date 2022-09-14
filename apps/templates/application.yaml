@@ -1,0 +1,64 @@
+{{ range $app, $attrs := .Values.apps }}
+
+{{- if $attrs }}
+
+{{ $app_name := replace "_" "-" $app }}
+
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+{{- if $.Values.argocd.appNameSuffix }}
+  name: {{ printf "%s%s" $app_name $.Values.argocd.appNameSuffix }}
+{{- else }}
+  name: {{ $app_name }}
+{{- end }}
+  namespace: {{ $.Values.argocd.namespace }}
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: {{ $attrs.namespace }}
+    server: {{ $.Values.destination.cluster }}
+  {{ if $attrs.project }}
+  project: {{ $attrs.project }}
+  {{ else }}
+  project: {{ $.Values.argocd.project }}
+  {{ end }}
+  source:
+    {{ if $attrs.path }}
+    path: {{ $attrs.path }}
+    {{ else if $attrs.chart }}
+    chart: {{ $attrs.chart }}
+    {{ end }}
+{{- if $attrs.repo_url }}
+    repoURL: {{ $attrs.repo_url }}
+    targetRevision: {{ $attrs.repo_rev }}
+{{- else }}
+    repoURL: {{ $.Values.source.repoURL }}
+    targetRevision: {{ $.Values.source.targetRevision }}
+{{ end }}
+{{- if $attrs.helm_parameters }}
+    helm:
+      parameters:
+{{- range $p_key, $p_value :=  $attrs.helm_parameters }}
+          - name: {{ $p_key }}
+            value: {{ ternary ($p_value | quote) (toYaml $p_value) (typeIs "string" $p_value) }}
+            forceString: true
+{{- end }}
+{{- end }}
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+{{- if not $attrs.sync_policy_manual }}
+    automated:
+      prune: {{ $.Values.syncPolicy.prune }}
+      selfHeal: {{ $.Values.syncPolicy.selfHeal }}
+{{- else }}
+    automated:
+      prune: false
+      selfHeal: false
+
+{{ end }}
+{{ end }}
+{{ end }}
