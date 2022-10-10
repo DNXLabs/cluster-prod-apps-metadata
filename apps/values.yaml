@@ -17,10 +17,7 @@ apps:
     namespace: prod
     path: charts/poc-application-blueprint
     helm_parameters:
-      service.type: NodePort
-      service.port: "80"
       image.tag: "latest"
-      ingress.enabled: "true"
       ingress.hosts[0].host: blueprint.citadel-prod.bubbletea.dnx.one
       ingress.hosts[0].paths[0]: "/"
-      revisionHistoryLimit: "2"
+      ingress.hosts[0].paths[0]: "Prefix"
