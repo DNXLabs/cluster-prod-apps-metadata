@@ -18,6 +18,3 @@ apps:
     path: charts/poc-application-blueprint
     helm_parameters:
       image.tag: "latest"
-      ingress.hosts[0].host: blueprint.citadel-prod.bubbletea.dnx.one
-      ingress.hosts[0].paths[0]: "/"
-      ingress.hosts[0].paths[0]: "Prefix"
