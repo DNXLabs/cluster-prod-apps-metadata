@@ -17,4 +17,5 @@ apps:
     namespace: prod
     path: charts/poc-application-blueprint
     helm_parameters:
+      image.repository: nginx
       image.tag: "latest"
