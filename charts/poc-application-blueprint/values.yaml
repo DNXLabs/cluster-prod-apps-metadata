@@ -44,9 +44,8 @@ ingress:
   enabled: true
   className: ""
   annotations:
-    alb.ingress.kubernetes.io/group:
-      name: prod-apps
-      order: "100"
+    alb.ingress.kubernetes.io/group.name: prod-apps
+    alb.ingress.kubernetes.io/group.order: "100"
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/certificate-arn: "arn:aws:acm:ap-southeast-2:960722883904:certificate/50e2b8cb-b10c-42ee-9a30-a282c4efba63"
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
